@@ -4,4 +4,4 @@ Download the app.
 
 Run it with:
 
-flask run
+`flask run`
