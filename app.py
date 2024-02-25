@@ -17,6 +17,9 @@ client = openai.OpenAI(
 
 df = pd.read_csv('./data.csv')
 
+with open('./state_outlines.json', 'r') as f:
+    state_outlines = json.loads(f.read())
+
 class StateResults(BaseModel):
     state_codes: List[str]
     
@@ -264,7 +267,13 @@ def handle_message(message):
     
         text = get_chat_text(message, output)
 
-        return {"text": text, "json_output": output}
+        if output_unit == 'STATE':
+            for x in output:
+                if state_outlines[x]:
+                    output[x]['outline'] = state_outlines[x]
+
+
+        return {"answer": text, "json_output": output}
 
 #######################################################################################################
 
