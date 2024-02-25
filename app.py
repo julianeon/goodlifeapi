@@ -214,6 +214,7 @@ def handle_message(message):
                     "properties": {
                         "input_geographic_unit": {
                             "type": "string",
+                            "enum": ["REGION", "STATE", "CITY"],
                             "description": "The input unit, which can be REGION, STATE or CITY."
                         },
                         "input_geographic_names": {
@@ -222,7 +223,8 @@ def handle_message(message):
                         },
                         "output_geographic_unit": {
                             "type": "string",
-                            "description": "The outputted geographic unit - either state, city, or zip. If the user does not specify, we assume if the input_geographic_unit is region, this value will be state, and if the input_geographic_unit is state, this will be city, and if the input_geographic_unit is city, this will be zip."
+                            "enum": ["STATE", "CITY", "ZIP"],
+                            "description": "The outputted geographic unit - either STATE, CITY, or ZIP. If the user does not specify, we assume if the input_geographic_unit is region, this value will be state, and if the input_geographic_unit is state, this will be city, and if the input_geographic_unit is city, this will be zip."
                         }
                     },
                     "required": ["input_geographic_unit", "input_geographic_names", "output_geographic_unit"],
