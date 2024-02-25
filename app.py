@@ -7,12 +7,16 @@ CORS(app)
 
 @app.route('/question', methods=['POST'])
 def handle_question():
+    data = request.get_json()
+    question = data.get('question', '')
     responses = [
-        "Crime is low.",
-        "Rate is 5%.",
-        "Quality of living is high."
+        "crime is low.",
+        "rate is 5%.",
+        "quality of living is high."
     ]
-    return jsonify(answer=random.choice(responses))
+    canswer = random.choice(responses)
+    ranswer = question + " " + canswer
+    return jsonify(answer=ranswer)
 
 if __name__ == '__main__':
     app.run(debug=True)
